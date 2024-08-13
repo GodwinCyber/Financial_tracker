@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Loader2 } from "lucide-react";
 import { SignIn, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
 
@@ -22,8 +23,8 @@ export default function Page() {
                     </ClerkLoading>
                 </div>
             </div>
-            <div className="h-full bg-gray-400 hidden lg:flex items-center justify-center">
-
+            <div className="h-full bg-[#0C0967] hidden lg:flex items-center justify-center">
+                <Image src="/image.jpg" height={100} width={100} alt="image"/>
             </div>
         </div>
 );
