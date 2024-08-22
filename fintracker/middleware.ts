@@ -1,13 +1,48 @@
 import { clerkMiddleware, createRouteMatcher } from "@clerk/nextjs/server";
 import { NextResponse } from "next/server";
+//import { NextResponse } from "next/server";
 
-const isPublicRoute = createRouteMatcher(["/sign-in(.*)", "/sign-up(.*)", "/", "/api/accounts", "/accounts"]);
+const isPublicRoute = createRouteMatcher(
+  [
+    "/sign-in(.*)",
+    "/sign-up(.*)",
+    "/",
+    "/accounts",
+    "/transactions",
+    "/categories",
+    "/settings",
+    "/home",
+  ]
+)
+const isPublicApiRoute = createRouteMatcher(
+  [
+    "/api/accounts(.*)",
+  ]
+)
 
-export default clerkMiddleware((auth, request) => {
-  if (!isPublicRoute(request)) {
-    auth().protect();
+export default clerkMiddleware((auth, req) => {
+  const {userId} =auth();
+  const currentUrl = new URL(req.url);
+  const isAccessDashboard = currentUrl.pathname === "/home";
+  const isApiRequest = currentUrl.pathname.startsWith("/api");
+
+  if (userId && isPublicRoute(req) && !isAccessDashboard) {
+    return NextResponse.redirect(new URL("/home", req.url));
+  }
+  //not logged in
+  if (!userId) {
+    if (!isPublicRoute(req) && !isPublicApiRoute(req)) {
+      return NextResponse.redirect(new URL("/sign-in", req.url));
+    }
+    if (isApiRequest && !isPublicApiRoute(req)) {
+      return NextResponse.redirect(new URL("/sign-in", req.url));
+    }
   }
   return NextResponse.next();
+  // if (!isPublicRoute(req)) {
+  //   auth().protect();
+  // }
+  //return NextResponse.next();
 });
 
 export const config = {
