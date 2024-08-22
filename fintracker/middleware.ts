@@ -7,37 +7,40 @@ const isPublicRoute = createRouteMatcher(
     "/sign-in(.*)",
     "/sign-up(.*)",
     "/",
-    "/accounts",
-    "/transactions",
-    "/categories",
-    "/settings",
-    "/home",
+    // "/accounts(.*)",
+    // "/transactions",
+    // "/categories",
+    // "/settings",
+    //"/home",
   ]
-)
-const isPublicApiRoute = createRouteMatcher(
-  [
-    "/api/accounts(.*)",
-  ]
-)
+);
+// const isPublicApiRoute = createRouteMatcher(
+//   [
+//     "/api/accounts(.*)",
+//   ]
+// )
 
 export default clerkMiddleware((auth, req) => {
-  const {userId} =auth();
-  const currentUrl = new URL(req.url);
-  const isAccessDashboard = currentUrl.pathname === "/home";
-  const isApiRequest = currentUrl.pathname.startsWith("/api");
+  if (isPublicRoute(req)) {
+    auth().protect();
+  }
+  // const {userId} =auth();
+  // const currentUrl = new URL(req.url);
+  // const isDashboardAccess = currentUrl.pathname === "/";
+  // const isApiRequest = currentUrl.pathname.startsWith("/api");
 
-  if (userId && isPublicRoute(req) && !isAccessDashboard) {
-    return NextResponse.redirect(new URL("/home", req.url));
-  }
-  //not logged in
-  if (!userId) {
-    if (!isPublicRoute(req) && !isPublicApiRoute(req)) {
-      return NextResponse.redirect(new URL("/sign-in", req.url));
-    }
-    if (isApiRequest && !isPublicApiRoute(req)) {
-      return NextResponse.redirect(new URL("/sign-in", req.url));
-    }
-  }
+  // if (userId && isPublicRoute(req) && !isDashboardAccess) {
+  //   return NextResponse.redirect(new URL("/", req.url));
+  // }
+  // //not logged in
+  // if (!userId) {
+  //   if (!isPublicRoute(req) && !isPublicApiRoute(req)) {
+  //     return NextResponse.redirect(new URL("/sign-in", req.url));
+  //   }
+  //   if (isApiRequest && !isPublicApiRoute(req)) {
+  //     return NextResponse.redirect(new URL("/sign-in", req.url));
+  //   }
+  // }
   return NextResponse.next();
   // if (!isPublicRoute(req)) {
   //   auth().protect();

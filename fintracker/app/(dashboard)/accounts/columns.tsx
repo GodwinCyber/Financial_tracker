@@ -43,7 +43,7 @@ export const columns: ColumnDef<ResponseType>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "Name",
+    accessorKey: "name",
     header: ({ column }) => {
       return (
         <Button
