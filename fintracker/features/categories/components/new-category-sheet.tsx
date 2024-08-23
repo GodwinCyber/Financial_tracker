@@ -1,4 +1,11 @@
-import { useNewAccount } from "@/features/accounts/hooks/use-new-account";
+import { CategoryForm } from "@/features/categories/components/category-form";
+import { useNewCategory } from "@/features/categories/hooks/use-new-category";
+import { useCreateCategory } from "@/features/categories/api/use-create-category";
+
+
+import { z } from "zod";
+import { insertCategorySchema } from "@/db/schema";
+
 import {
     Sheet,
     SheetContent,
@@ -6,22 +13,19 @@ import {
     SheetHeader,
     SheetTitle,
 } from "@/components/ui/sheet";
-import { AccountForm } from "@/features/accounts/components/account-form";
-import { z } from "zod";
-import { insertAccountSchema } from "@/db/schema";
-import { useCreateAccount } from "@/features/accounts/api/use-create-account";
 
-const formSchema = insertAccountSchema.pick({
+
+const formSchema = insertCategorySchema.pick({
     name: true,
 });
 
 type FormValues = z.input<typeof formSchema>;
 
 
-export const NewAccountSheet = () => {
-    const { isOpen, onClose } = useNewAccount();
+export const NewCategorySheet = () => {
+    const { isOpen, onClose } = useNewCategory();
 
-    const mutation = useCreateAccount();
+    const mutation = useCreateCategory();
 
     const onSubmit = (values: FormValues) => {
         mutation.mutate(values, {
@@ -35,13 +39,13 @@ export const NewAccountSheet = () => {
             <SheetContent className="space-y-4">
                 <SheetHeader>
                     <SheetTitle>
-                        New Account
+                        New Category
                     </SheetTitle>
                     <SheetDescription>
-                        Creat a new account to track your transactions.
+                        Creat a new category to manage your transactions.
                     </SheetDescription>
                 </SheetHeader>
-                <AccountForm 
+                <CategoryForm
                   onSubmit={onSubmit}
                   disabled={mutation.isPending}
                   defaultValues={{
