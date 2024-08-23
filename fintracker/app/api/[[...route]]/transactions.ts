@@ -117,28 +117,35 @@ const app = new Hono()
     }
   )
   .post(
-    "/",
+    "/bulk-create",
     clerkMiddleware(),
-    zValidator("json", insertTransactionSchema.omit({
-      id: true,
-    })),
+    zValidator(
+      "json",
+      z.array(
+        insertTransactionSchema.omit({
+          id: true,
+        }),
+      ),
+    ),
     async (c) => {
       const auth = getAuth(c);
       const values = c.req.valid("json");
 
-      // Proceed only if userId is present
-      if (auth?.userId) {
-        const [data] = await db.insert(transactions).values({
-          id: createId(),
-          ...values,
-        }).returning();
-
-        return c.json({ data });
+      if (!auth?.userId) {
+        return c.json({ error: "Unauthorized" }, 401);
       }
+       const data = await db
+        .insert(transactions)
+        .values(
+          values.map((value) => ({
+            id: createId(),
+            ...value,
+          }))
+        )
+        .returning();
 
-      console.log("User ID is missing or invalid");
-      return c.json({ error: "Unauthorized" }, 401);
-    }
+      return c.json({ data });
+    },
   )
   .post(
     "/bulk-delete",
