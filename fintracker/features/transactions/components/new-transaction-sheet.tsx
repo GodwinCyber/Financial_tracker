@@ -1,4 +1,6 @@
-import { useNewAccount } from "@/features/accounts/hooks/use-new-account";
+import { useCreateTransaction } from "@/features/transactions/api/use-create-transaction";
+import { useNewTransaction } from "@/features/transactions/hooks/use-new-transaction";
+
 import {
     Sheet,
     SheetContent,
@@ -8,20 +10,19 @@ import {
 } from "@/components/ui/sheet";
 import { AccountForm } from "@/features/accounts/components/account-form";
 import { z } from "zod";
-import { insertAccountSchema } from "@/db/schema";
-import { useCreateAccount } from "@/features/accounts/api/use-create-account";
+import { insertTransactionSchema } from "@/db/schema";
 
-const formSchema = insertAccountSchema.pick({
-    name: true,
+const formSchema = insertTransactionSchema.omit({
+    id: true,
 });
 
 type FormValues = z.input<typeof formSchema>;
 
 
-export const NewAccountSheet = () => {
-    const { isOpen, onClose } = useNewAccount();
+export const NewTransactionSheet = () => {
+    const { isOpen, onClose } = useNewTransaction();
 
-    const mutation = useCreateAccount();
+    const mutation = useCreateTransaction();
 
     const onSubmit = (values: FormValues) => {
         mutation.mutate(values, {
@@ -35,19 +36,13 @@ export const NewAccountSheet = () => {
             <SheetContent className="space-y-4">
                 <SheetHeader>
                     <SheetTitle>
-                        New Account
+                        New Transaction
                     </SheetTitle>
                     <SheetDescription>
-                        Creat a new account to track your transactions.
+                        Add a new transaction
                     </SheetDescription>
                 </SheetHeader>
-                <AccountForm 
-                  onSubmit={onSubmit}
-                  disabled={mutation.isPending}
-                  defaultValues={{
-                    name: "",
-                  }}
-                />
+                <p>TODO: Transaction form</p>
             </SheetContent>
         </Sheet>
     );
