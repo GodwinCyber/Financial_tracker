@@ -3,10 +3,14 @@ import { Trash } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
+import { Select } from "@/components/select";
+import { insertTransactionSchema } from "@/db/schema";
+
+import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { DatePicker } from "@/components/date-picker";
-import { insertTransactionSchema } from "@/db/schema";
+
 import {
     Form,
     FormControl,
@@ -15,7 +19,6 @@ import {
     FormLabel,
     FormMessage,
 } from "@/components/ui/form";
-import { Select } from "@/components/select";
 
 const formSchema = z.object({
     date: z.coerce.date(),
@@ -155,6 +158,33 @@ export const TransactionForm = ({
                                 disabled={disabled}
                                 placeholder="Add a payee"
                                 {...field}
+                            />
+                            {/* <Select 
+                              placeholder="Select an category"
+                              options={categoryOptions}
+                              value={field.value}
+                              onChange={field.onChange}
+                              disabled={disabled}
+                              onCreate={onCreateCategory}
+                            /> */}
+                        </FormControl>
+                    </FormItem>
+                    )}
+                />
+                <FormField 
+                  name="notes"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>
+                            Notes
+                        </FormLabel>
+                        <FormControl>
+                            <Textarea 
+                                {...field}
+                                value={field.value ?? ""}
+                                disabled={disabled}
+                                placeholder="Optional notes"
                             />
                             {/* <Select 
                               placeholder="Select an category"
