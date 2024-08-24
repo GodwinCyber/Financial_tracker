@@ -92,12 +92,12 @@ export const NewTransactionSheet = () => {
                   )
                   : (
                     <TransactionForm 
-                        onSubmit={onsubmit}
+                        onSubmit={onSubmit}
                         disabled={isPending}
                         categoryOptions={categoryOptions}
-                        oncreateCategory={onCreateCategory}
+                        onCreateCategory={onCreateCategory}
                         accountOptions={accountOptions}
-                        oncreateAccount={onCreateAccount}
+                        onCreateAccount={onCreateAccount}
                     />
                   )
                 }
