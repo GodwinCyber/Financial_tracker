@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 
 import { Select } from "@/components/select";
+import { AmountInput } from "@/components/amount-input";
 import { insertTransactionSchema } from "@/db/schema";
 
 import { Textarea } from "@/components/ui/textarea";
@@ -158,6 +159,33 @@ export const TransactionForm = ({
                                 disabled={disabled}
                                 placeholder="Add a payee"
                                 {...field}
+                            />
+                            {/* <Select 
+                              placeholder="Select an category"
+                              options={categoryOptions}
+                              value={field.value}
+                              onChange={field.onChange}
+                              disabled={disabled}
+                              onCreate={onCreateCategory}
+                            /> */}
+                        </FormControl>
+                    </FormItem>
+                    )}
+                />
+                <FormField 
+                  name="amount"
+                  control={form.control}
+                  render={({ field }) => (
+                    <FormItem>
+                        <FormLabel>
+                            Amount
+                        </FormLabel>
+                        <FormControl>
+                            <AmountInput 
+                                {...field}
+                                disabled={disabled}
+                                placeholder="0.00"
+                                
                             />
                             {/* <Select 
                               placeholder="Select an category"
