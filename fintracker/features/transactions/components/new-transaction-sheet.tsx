@@ -1,3 +1,11 @@
+import { z } from "zod";
+import { Loader2 } from "lucide-react";
+
+import { insertTransactionSchema } from "@/db/schema";
+
+import { TransactionForm } from "@/features/transactions/components/transaction-form";
+
+
 import { useCreateTransaction } from "@/features/transactions/api/use-create-transaction";
 import { useNewTransaction } from "@/features/transactions/hooks/use-new-transaction";
 
@@ -16,8 +24,6 @@ import {
     SheetHeader,
     SheetTitle,
 } from "@/components/ui/sheet";
-import { z } from "zod";
-import { insertTransactionSchema } from "@/db/schema";
 
 const formSchema = insertTransactionSchema.omit({
     id: true,
@@ -29,7 +35,7 @@ type FormValues = z.input<typeof formSchema>;
 export const NewTransactionSheet = () => {
     const { isOpen, onClose } = useNewTransaction();
 
-    const mutation = useCreateTransaction();
+    const createMutation = useCreateTransaction();
 
     const categoryQuery = useGetCategories();
     const categoryMutation = useCreateCategory();
@@ -51,8 +57,17 @@ export const NewTransactionSheet = () => {
         value: account.id,
     }));
 
+    const isPending =
+        createMutation.isPending ||
+        categoryMutation.isPending ||
+        accountMutation.isPending;
+
+    const isLoading =
+        categoryQuery.isLoading ||
+        accountQuery.isLoading;
+    
     const onSubmit = (values: FormValues) => {
-        mutation.mutate(values, {
+        createMutation.mutate(values, {
             onSuccess: () => {
                 onClose();
             },
@@ -69,7 +84,24 @@ export const NewTransactionSheet = () => {
                         Add a new transaction
                     </SheetDescription>
                 </SheetHeader>
-                <p>TODO: Transaction form</p>
+                {isLoading
+                  ? (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                        <Loader2 className="size-4 text-muted-foreground animate-spin"/>
+                    </div>
+                  )
+                  : (
+                    <TransactionForm 
+                        onSubmit={onsubmit}
+                        disabled={isPending}
+                        categoryOptions={categoryOptions}
+                        oncreateCategory={onCreateCategory}
+                        accountOptions={accountOptions}
+                        oncreateAccount={onCreateAccount}
+                    />
+                  )
+                }
+                
             </SheetContent>
         </Sheet>
     );
