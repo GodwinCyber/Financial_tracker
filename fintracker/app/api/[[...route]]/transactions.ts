@@ -74,47 +74,50 @@ const app = new Hono()
       // console.log("User ID is missing or invalid");
       return c.json({ error: "Unauthorized" }, 401);
     })
-  .get(
-    "/:id",
-    zValidator("param", z.object({
-      id: z.string().optional(),
-    })),
-    clerkMiddleware(),
-    async (c) => {
-      const auth = getAuth(c);
-      const { id } = c.req.valid("param");
-
-      if (!id) {
-        return c.json({ error: "Missing id" }, 400);
-      }
-
-      if (!auth?.userId) {
+    .get(
+      "/:id",
+      zValidator("param", z.object({
+        id: z.string().optional(),
+      })),
+      clerkMiddleware(),
+      async (c) => {
+        const auth = getAuth(c);
+        const { id } = c.req.valid("param");
+    
+        if (!id) {
+          return c.json({ error: "Missing id" }, 400);
+        }
+    
+        if (auth?.userId) {
+          const [data] = await db
+            .select({
+              id: transactions.id,
+              date: transactions.date,
+              categoryId: transactions.categoryId,
+              payee: transactions.payee,
+              amount: transactions.amount,
+              notes: transactions.notes,
+              accountId: transactions.accountId,
+            })
+            .from(transactions)
+            .innerJoin(accounts, eq(transactions.accountId, accounts.id))
+            .where(
+              and(
+                eq(transactions.id, id),
+                eq(accounts.userId, auth.userId),
+              ),
+            );
+    
+          if (!data) {
+            return c.json({ error: "not found" }, 404);
+          }
+    
+          return c.json({ data });
+        }
+    
         return c.json({ error: "Unauthorized" }, 401);
       }
-      const [data] = await db
-        .select({
-          id: transactions.id,
-          date: transactions.date,
-          categoryId: transactions.categoryId,
-          payee: transactions.payee,
-          amount: transactions.amount,
-          notes: transactions.notes,
-          accountId: transactions.accountId,
-        })
-        .from(transactions)
-        .innerJoin(accounts, eq(transactions.accountId, accounts.id))
-        .where(
-          and(
-            eq(transactions.id, id),
-            eq(accounts.userId, auth.userId),
-          ),
-        );
-      if (!data) {
-        return c.json({ error: "not found" }, 404);
-      }
-      return c.json({ data });
-    }
-  )
+    )    
   .post(
     "/",
     clerkMiddleware(),
@@ -153,19 +156,19 @@ const app = new Hono()
       const values = c.req.valid("json");
 
       if (!auth?.userId) {
-        return c.json({ error: "Unauthorized" }, 401);
-      }
-       const data = await db
-        .insert(transactions)
-        .values(
-          values.map((value) => ({
-            id: createId(),
-            ...value,
-          }))
-        )
-        .returning();
+        const data = await db
+          .insert(transactions)
+          .values(
+            values.map((value) => ({
+              id: createId(),
+              ...value,
+            }))
+          )
+          .returning();
 
-      return c.json({ data });
+        return c.json({ data });
+      }
+      return c.json({ error: "Unauthorized" }, 401);
     },
   )
   .post(
