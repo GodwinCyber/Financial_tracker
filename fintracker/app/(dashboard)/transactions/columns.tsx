@@ -9,7 +9,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Actions } from "./actions";
 
 
-export type ResponseType = InferResponseType<typeof client.api.accounts.$get, 200>["data"][0];
+export type ResponseType = InferResponseType<typeof client.api.transactions.$get, 200>["data"][0];
 
 // This type is used to define the shape of our data.
 // You can use a Zod schema hee if you want.
@@ -26,8 +26,7 @@ export const columns: ColumnDef<ResponseType>[] = [
     header: ({ table }) => (
       <Checkbox
         checked={
-          table.getIsAllPageRowsSelected() ||
-          (table.getIsSomePageRowsSelected() && "indeterminate")
+          table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
@@ -44,18 +43,18 @@ export const columns: ColumnDef<ResponseType>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "name",
+    accessorKey: "date",
     header: ({ column }) => {
       return (
         <Button
           variant="ghost"
           onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
         >
-          Name
+          Date
           <ArrowUpDown className="ml-2 h-4 w-4" />
         </Button>
       )
-    }
+    },
   },
   {
     id: "actions",
