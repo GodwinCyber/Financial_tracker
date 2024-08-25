@@ -6,11 +6,13 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { Select } from "@/components/select";
 import { AmountInput } from "@/components/amount-input";
 import { insertTransactionSchema } from "@/db/schema";
+import { convertAmountToMiliunits } from "@/lib/utils";
 
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { DatePicker } from "@/components/date-picker";
+
 
 import {
     Form,
@@ -65,8 +67,14 @@ export const TransactionForm = ({
         defaultValues: defaultValues,
     });
     const handleSubmit = (values: FormValues) => {
-        console.log({ values });
-        //onSubmit(values);
+        const amount = parseFloat(values.amount);
+        const amountInMiliunits = convertAmountToMiliunits(amount);
+        
+        onSubmit({
+            ...values,
+            amount: amountInMiliunits,
+        });
+        // console.log({ values });
     };
     const handleDelete = () => {
         onDelete?.();
@@ -227,7 +235,7 @@ export const TransactionForm = ({
                     )}
                 />
                 <Button className="w-full" disabled={disabled}>
-                    {id ? "Save changes" : "Create account"}
+                    {id ? "Save changes" : "Create transaction"}
                 </Button>
                 {!!id && (
                     <Button
@@ -238,7 +246,7 @@ export const TransactionForm = ({
                       variant="outline"
                     >
                     <Trash className="size-4 mr-2"/>
-                    Delete account
+                    Delete transactions
                 </Button>
             )}
             </form>

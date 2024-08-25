@@ -117,6 +117,29 @@ const app = new Hono()
     }
   )
   .post(
+    "/",
+    clerkMiddleware(),
+    zValidator("json", insertTransactionSchema.omit({
+      id: true,
+    })),
+    async (c) => {
+      const auth = getAuth(c);
+      const values = c.req.valid("json");
+
+      // Proceed only if userId is present
+      if (!auth?.userId) {
+        return c.json({ error: "Unauthorized" }, 401);
+      }
+
+        const [data] = await db.insert(transactions).values({
+          id: createId(),
+          ...values,
+        }).returning();
+
+        return c.json({ data });
+      }
+  )
+  .post(
     "/bulk-create",
     clerkMiddleware(),
     zValidator(
