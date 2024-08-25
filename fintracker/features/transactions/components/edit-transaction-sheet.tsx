@@ -9,7 +9,7 @@ import { useEditTransaction } from "@/features/transactions/api/use-edit-transac
 import { useDeleteTransaction } from "@/features/transactions/api/use-delete-transaction";
 import { TransactionForm } from "@/features/transactions/components/transaction-form";
 
-import { useCreateTransaction } from "@/features/transactions/api/use-create-transaction";
+//import { useCreateTransaction } from "@/features/transactions/api/use-create-transaction";
 
 import { useGetCategories } from "@/features/categories/api/use-get-categories";
 import { useCreateCategory } from "@/features/categories/api/use-create-category";
@@ -45,7 +45,7 @@ export const EditTransactionSheet = () => {
     const editMutation = useEditTransaction(id);
     const deleteMutation = useDeleteTransaction(id);
 
-    const createMutation = useCreateTransaction();
+    // const createMutation = useCreateTransaction();
 
     const categoryQuery = useGetCategories();
     const categoryMutation = useCreateCategory();
