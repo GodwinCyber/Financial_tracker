@@ -29,9 +29,7 @@ const app = new Hono()
       const { from, to, accountId } = c.req.valid("query");
 
       // Proceed only if userId is present
-      if (!auth?.userId) {
-        return c.json({ error: "Unauthorized" }, 401);
-      }
+      if (auth?.userId) {
         const defaultTo = new Date();
         const defaultFrom = subDays(defaultTo, 30);
 
@@ -71,9 +69,10 @@ const app = new Hono()
           .orderBy(desc(transactions.date));
 
         return c.json({ data });
+      }
 
       // console.log("User ID is missing or invalid");
-      // return c.json({ error: "Unauthorized" }, 401);
+      return c.json({ error: "Unauthorized" }, 401);
     })
   .get(
     "/:id",
@@ -127,10 +126,7 @@ const app = new Hono()
       const values = c.req.valid("json");
 
       // Proceed only if userId is present
-      if (!auth?.userId) {
-        return c.json({ error: "Unauthorized" }, 401);
-      }
-
+      if (auth?.userId) {
         const [data] = await db.insert(transactions).values({
           id: createId(),
           ...values,
@@ -138,6 +134,8 @@ const app = new Hono()
 
         return c.json({ data });
       }
+      return c.json({ error: "Unauthorized" }, 401);
+    }
   )
   .post(
     "/bulk-create",
