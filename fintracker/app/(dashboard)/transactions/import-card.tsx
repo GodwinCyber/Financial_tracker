@@ -7,11 +7,13 @@ import {
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
 import { ImportTable } from "./import-table";
+import { format, parse } from "date-fns";
+import { convertAmountToMiliunits } from "@/lib/utils";
 
 const dateFormat = "yyyy-MM-dd HH:mm:ss";
 const outputFormat = "yyyy-MM-dd";
 
-const reuiredOption = [
+const requiredOption = [
     "amount",
     "date",
     "payee",
@@ -55,6 +57,43 @@ export const ImportCard = ({
             newSelectedColumns[`column_${columnIndex}`] = value;
             return newSelectedColumns;
         });
+    };
+
+    const progress = Object.values(selectedColumns).filter(Boolean).length;
+
+    const handleContinue = () => {
+        const getColumnIndex = (column: string) => {
+            return column.split("_")[1];
+        };
+        const mappedData = {
+            headers: headers.map((_header, index) => {
+                const columnIndex = getColumnIndex(`column_${index}`);
+                return selectedColumns[`column_$(columnIndex)`] || null;
+            }),
+            body: body.map((row) => {
+                const transformRow = row.map((cell, index) => {
+                    const columnIndex = getColumnIndex(`column_${index}`);
+                    return selectedColumns[`column_${columnIndex}`] ? cell : null;
+                });
+                return transformRow.every((item) => item === null) ? [] : transformRow;
+            }).filter((row) => row.length > 0),
+        };
+        
+        const arrayOfData = mappedData.body.map((row) => {
+            return row.reduce((acc: any, cell, index) => {
+                const header = mappedData.headers[index];
+                if (header !== null) {
+                    acc[header] = cell;
+                }
+                return acc;
+            }, {});
+        });
+        const formattedData = arrayOfData.map((item) => ({
+            ...item,
+            amount: convertAmountToMiliunits(parseFloat(item.amount)),
+            date: format(parse(item.date, dateFormat, new Date()), outputFormat)
+        }));
+        onSubmit(formattedData);
     }
 
     return (
@@ -67,6 +106,14 @@ export const ImportCard = ({
                     <div className="flex items-center gap-x-2">
                         <Button onClick={onCancel} size="sm">
                            Cancel
+                        </Button>
+                        <Button
+                          size="sm"
+                          disabled={progress < requiredOption.length}
+                          onClick={handleContinue}
+                          className="w-full lg:w-auto"
+                        >
+                            Continue ({progress} / {requiredOption.length})
                         </Button>
                     </div>
                 </CardHeader>
