@@ -12,7 +12,7 @@ export const WelcomeMsg = () => {
             </h2>
             {/* eslint-disable-next-line react/no-unescaped-entities */}
             <p className="text-sm lg:text-base text-[#88BDBF]">
-                Here's your Financial Summary Report.
+                Here is your Financial Summary Report.
             </p>
         </div>
     );
