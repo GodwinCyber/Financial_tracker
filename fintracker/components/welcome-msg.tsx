@@ -10,6 +10,7 @@ export const WelcomeMsg = () => {
             <h2 className="text-2xl lg:text-4xl text-white font-medium">
                 Welcome Back{isLoaded ? ", " : " "}{user?.firstName}
             </h2>
+            {/* eslint-disable-next-line react/no-unescaped-entities */}
             <p className="text-sm lg:text-base text-[#88BDBF]">
                 Here's your Financial Summary Report.
             </p>
