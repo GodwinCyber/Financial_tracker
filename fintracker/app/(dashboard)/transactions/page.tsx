@@ -1,5 +1,6 @@
 "use client";
 
+import { transactions as transactionSchema } from "@/db/schema";
 import { UploadButton } from "./upload-button";
 import { ImportCard } from "./import-card";
 
@@ -56,6 +57,12 @@ const TransactionsPage = () => {
 
     const isDisabled = transactionsQuery.isLoading || deleteTransactions.isPending;
 
+    const onSubmitImport = async (
+        values: typeof transactionSchema.$inferInsert[],
+    ) => {
+
+    };
+
     if (transactionsQuery.isLoading) {
         return (
             <div className="max-screen-2xl mx-auto w-full pb-10 -mt-24">
@@ -79,7 +86,7 @@ const TransactionsPage = () => {
                 <ImportCard 
                   data={importResults.data}
                   onCancel={onCancelImport}
-                  onSubmit={() => {}} 
+                  onSubmit={onSubmitImport} 
                 />
             </>
         );

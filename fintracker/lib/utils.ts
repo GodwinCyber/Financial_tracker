@@ -23,9 +23,9 @@ export function formatCurrency(value: number) {
   // you can pass it to the final .format(finalValue)
   // check use-get-transactions
 
-  return Intl.NumberFormat('en-US', {
-    style: 'currency',
-    currency: 'USD',
+  return Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
     minimumFractionDigits: 2,
   }).format(value);
 };

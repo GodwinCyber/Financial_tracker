@@ -29,7 +29,7 @@ export const TableHeadSelect = ({
     selectedColumns,
     onChange,
 }: Props) => {
-    const currentSelection = selectedColumns[`column_$(columnIndex)`];
+    const currentSelection = selectedColumns[`column_${columnIndex}`];
 
     return (
         <Select

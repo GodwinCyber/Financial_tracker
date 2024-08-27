@@ -68,7 +68,7 @@ export const ImportCard = ({
         const mappedData = {
             headers: headers.map((_header, index) => {
                 const columnIndex = getColumnIndex(`column_${index}`);
-                return selectedColumns[`column_$(columnIndex)`] || null;
+                return selectedColumns[`column_${columnIndex}`] || null;
             }),
             body: body.map((row) => {
                 const transformRow = row.map((cell, index) => {

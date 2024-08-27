@@ -65,7 +65,7 @@ export const columns: ColumnDef<ResponseType>[] = [
   
       return (
         <span>
-          {format(date, "dd, MMM, yyy")}
+          {format(date, "dd, MMM, yyyy")}
         </span>
       );
     }
