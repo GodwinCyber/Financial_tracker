@@ -1,6 +1,11 @@
 import Header from "@/components/header";
 import React from "react";
 
+/**
+ * Props for DashboardLayout component:
+ * - children: React nodes to be rendered within the layout.
+ */
+
 type Props = {
     children: React.ReactNode;
 }

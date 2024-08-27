@@ -8,6 +8,13 @@ import {
     SelectValue,
 } from "@/components/ui/select";
 
+/**
+ * Props for TableHeadSelect component:
+ * - columnIndex: Index of the column being managed.
+ * - selectedColumns: Record of currently selected column values.
+ * - onChange: Callback function to handle changes in the selected column value.
+ */
+
 type Props = {
     columnIndex: number;
     selectedColumns: Record<string, string | null>;

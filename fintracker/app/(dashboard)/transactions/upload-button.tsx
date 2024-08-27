@@ -2,6 +2,12 @@ import { Upload } from "lucide-react";
 import { useCSVReader } from "react-papaparse";
 
 import { Button } from "@/components/ui/button";
+
+/**
+ * Props for UploadButton component:
+ * - onUpload: Callback function to handle the results of the uploaded CSV file.
+ */
+
 type Props = {
     onUpload: (results: any) => void;
 };

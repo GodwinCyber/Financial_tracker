@@ -1,3 +1,19 @@
+/**
+ * Import necessary modules and components:
+ * - transactionSchema: Schema for transaction data.
+ * - UploadButton: Component for handling file uploads.
+ * - ImportCard: Component for displaying and managing the import process.
+ * - Various hooks and components for managing transactions, accounts, and UI.
+ * - Loader2, Plus: Icons from lucide-react for loading and add actions.
+ * - columns: Configuration for table columns.
+ * - useState: React hook for state management.
+ * - toast: For displaying notifications.
+ * - DataTable: Component for displaying transactions in a table format.
+ * - Skeleton: Component for rendering a loading skeleton.
+ * - Button: UI component for buttons.
+ * - Card, CardHeader, CardTitle, CardContent: UI components for card layout.
+ */
+
 "use client";
 
 import { transactions as transactionSchema } from "@/db/schema";

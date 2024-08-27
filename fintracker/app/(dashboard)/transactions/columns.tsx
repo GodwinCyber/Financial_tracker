@@ -1,3 +1,25 @@
+/**
+ * Import necessary modules and components:
+ * - InferResponseType: Type inference from Hono API response.
+ * - client: Hono API client instance.
+ * - ColumnDef: Type for defining table columns in TanStack React Table.
+ * - ArrowUpDown: Icon component from lucide-react for sorting indicators.
+ * - Button: UI component for buttons.
+ * - Checkbox: UI component for checkboxes.
+ * - Actions: Custom actions component for handling row actions.
+ * - format: Function from date-fns for date formatting.
+ * - formatCurrency: Utility function for formatting currency values.
+ * - Badge: UI component for displaying status badges.
+ * - AccountColumn: Custom column component for displaying account details.
+ * - CategoryColumn: Custom column component for displaying category details.
+ * 
+ * ResponseType:
+ * - Defines the shape of the data returned by the Hono API for transactions.
+ * - Includes the data fields returned by the API.
+ */
+
+// Define the type for the response data of transactions
+
 "use client";
 
 import { InferResponseType } from "hono";

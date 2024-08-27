@@ -1,3 +1,24 @@
+/**
+ * Import necessary modules and components:
+ * - useConfirm: Custom hook for displaying a confirmation dialog.
+ * - useOpenTransaction: Custom hook for handling the opening of transaction details.
+ * - useDeleteTransaction: Custom hook for handling transaction deletion.
+ * - Button: Component for rendering buttons.
+ * - Edit, MoreHorizontal, Trash: Icon components from lucide-react.
+ * - DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger: Components for rendering dropdown menus.
+ * 
+ * Props Type:
+ * - Defines the shape of the props for the Actions component.
+ * - id: The unique identifier for the transaction.
+ * 
+ * Actions Component:
+ * - Renders a dropdown menu with options to edit or delete a transaction.
+ * - Uses `useConfirm` to handle confirmation for deleting a transaction.
+ * - Uses `useDeleteTransaction` to perform the deletion.
+ * - Uses `useOpenTransaction` to handle opening transaction details.
+ * - Applies styles to make the dropdown menu interactive and aligned correctly.
+ **/
+
 "use client";
 
 import { useConfirm } from "@/hooks/use-confirm";
