@@ -1,5 +1,11 @@
 import { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
+
+import { useCreateAccount } from "@/features/accounts/api/use-create-account";
+import { useGetAccounts } from "@/features/accounts/api/use-get-accounts";
+
+import { Select } from "@/components/select";
+
 import {
     Dialog,
     DialogContent,
@@ -8,16 +14,14 @@ import {
     DialogHeader,
     DialogFooter
 } from "@/components/ui/dialog";
-import { useGetAccount } from "../api/use-get-account";
-import { useCreateAccount } from "../api/use-create-account";
 
 export const useSelectAccount = (): [() => JSX.Element, () => Promise<unknown>] => {
-    const accountQuery = useGetAccount();
+    const accountQuery = useGetAccounts();
     const accountMutation = useCreateAccount();
     const onCreateAccount = (name: string) => accountMutation.mutate({
         name
     });
-    const accountOption = (accountQuery.data ?? []).map((account) => ({
+    const accountOptions = (accountQuery.data ?? []).map((account) => ({
         label: account.name,
         value: account.id,
     }));
@@ -54,6 +58,13 @@ export const useSelectAccount = (): [() => JSX.Element, () => Promise<unknown>] 
                         Please select account to continue.
                     </DialogDescription>
                 </DialogHeader>
+                <Select 
+                  placeholder="Select an account"
+                  options={accountOptions}
+                  onCreate={onCreateAccount}
+                  onChange={(value) => selectValue.current = value}
+                  disabled={accountQuery.isLoading || accountMutation.isPending}
+                />
                 <DialogFooter className="pt-2">
                     <Button
                       onClick={handleCancel}
