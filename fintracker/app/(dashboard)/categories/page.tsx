@@ -1,3 +1,20 @@
+/**
+ * Import necessary modules and components:
+ * - Loader2, Plus: Icon components from lucide-react for loading animations and adding new items.
+ * - columns: Configuration for table columns imported from the columns module.
+ * - DataTable, Skeleton, Button, Card, CardHeader, CardTitle, CardContent: UI components for table display, loading states, buttons, and card layout.
+ * 
+ * Hook Imports:
+ * - useNewCategory: Custom hook for handling new category creation.
+ * - useBulkDeleteCategories: Custom hook for handling the deletion of multiple categories.
+ * - useGetCategories: Custom hook for fetching categories data.
+ * 
+ * CategoriesPage Component:
+ * - Renders the categories management page with a responsive layout.
+ * - Displays a loading state while data is being fetched.
+ * - Handles adding new categories and deleting selected categories.
+ **/
+
 "use client";
 
 import { Loader2, Plus } from "lucide-react";

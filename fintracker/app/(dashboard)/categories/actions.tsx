@@ -1,3 +1,17 @@
+/**
+ * Import necessary modules and components:
+ * - Button: Custom button component from the UI library.
+ * - Edit, MoreHorizontal, Trash: Icon components from lucide-react for various actions.
+ * - useOpenCategory: Hook to handle the opening of a category for editing.
+ * - useDeleteCategory: Hook to handle the deletion of a category.
+ * - useConfirm: Hook to display a confirmation dialog before performing an action.
+ * - DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger: Components for creating a dropdown menu.
+ * 
+ * Actions Component:
+ * - Provides a dropdown menu with options to edit or delete a category.
+ * - Includes a confirmation dialog before deleting a category.
+ **/
+
 "use client";
 
 import { Button } from "@/components/ui/button";
