@@ -1,3 +1,17 @@
+/** 
+ * Import necessary modules and components:
+ * - Button: Custom button component from the UI library.
+ * - useOpenAccount: Hook to handle opening an account editing form.
+ * - DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger: Components for creating a dropdown menu from the UI library.
+ * - Edit, MoreHorizontal, Trash: Icon components from lucide-react for visual elements.
+ * - useDeleteAccount: Hook to handle the deletion of an account.
+ * - useConfirm: Hook to display a confirmation dialog before performing an action.
+ * 
+ * Actions Component:
+ * - Renders a dropdown menu with options to edit or delete an account.
+ * - Includes confirmation before deletion and handles the deletion process.
+ **/
+
 "use client";
 
 import { Button } from "@/components/ui/button";

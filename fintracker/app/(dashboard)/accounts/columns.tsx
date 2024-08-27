@@ -1,3 +1,21 @@
+/** 
+ * Import necessary modules and components:
+ * - InferResponseType: Utility type from the Hono framework to infer response types.
+ * - client: Hono client instance for API requests.
+ * - ColumnDef: Type from @tanstack/react-table for defining table columns.
+ * - ArrowUpDown: Icon component from lucide-react for sorting indicators.
+ * - Button: Custom button component from the UI library.
+ * - Checkbox: Custom checkbox component from the UI library.
+ * - Actions: Custom component to handle actions like edit and delete for each row.
+ * 
+ * ResponseType:
+ * - Defines the shape of the data returned from the accounts API.
+ * 
+ * Columns Definition:
+ * - Defines the structure and behavior of columns in a table.
+ * - Includes a select column with checkboxes, a sortable name column, and an actions column for row-specific operations.
+ **/
+
 "use client";
 
 import { InferResponseType } from "hono";

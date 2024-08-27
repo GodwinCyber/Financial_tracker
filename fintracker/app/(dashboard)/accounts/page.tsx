@@ -1,3 +1,22 @@
+/** 
+ * Import necessary modules and components:
+ * - Button: Custom button component from the UI library.
+ * - Card, CardHeader, CardTitle, CardContent: Components from the UI library to structure the card layout.
+ * - useNewAccount: Hook to handle the creation of a new account.
+ * - Loader2, Plus: Icon components from lucide-react for loading indicators and adding new items.
+ * - columns: Predefined columns for the data table.
+ * - DataTable: Custom data table component for displaying accounts.
+ * - useGetAccounts: Hook to fetch account data from the API.
+ * - Skeleton: Component to display a loading skeleton while data is being fetched.
+ * - useBulkDeleteAccounts: Hook to handle bulk deletion of accounts.
+ * 
+ * AccountsPage Component:
+ * - Renders a page for managing accounts.
+ * - Displays a loading state while account data is being fetched.
+ * - Provides functionality to add a new account and delete selected accounts.
+ **/
+
+
 "use client";
 
 import { Button } from "@/components/ui/button";
