@@ -1,7 +1,7 @@
 // import shadcn, a customable open source tool that
 // is used for collection  re-usable component that can
 // copy and past
-
+import { eachDayOfInterval, isSameDay } from "date-fns";
 
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
@@ -28,4 +28,48 @@ export function formatCurrency(value: number) {
     currency: "USD",
     minimumFractionDigits: 2,
   }).format(value);
+};
+
+export function calculatePercentageChange(
+  current: number,
+  previous: number  
+) {
+  if (previous === 0) {
+    return previous === current ? 0 : 100;
+  }
+  return ((current - previous) / previous) * 100;
+};
+
+export function fillMissingDays(
+  activeDays: {
+    date: Date,
+    income: number,
+    expenses: number;
+  }[],
+  startDate: Date,
+  endDate: Date,
+) {
+  if (activeDays.length === 0) {
+    return [];
+  }
+
+  const allDays = eachDayOfInterval({
+    start: startDate,
+    end: endDate,
+  });
+
+  const transactionsByDay = allDays.map((day) => {
+    const found = activeDays.find((d) => isSameDay(d.date, day));
+
+    if (found) {
+      return found;
+    } else {
+      return {
+        date: day,
+        income: 0,
+        expenses: 0,
+      };
+    }
+  });
+  return transactionsByDay;
 };
