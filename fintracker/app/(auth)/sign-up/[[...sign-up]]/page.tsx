@@ -1,3 +1,14 @@
+/** 
+ * Import necessary modules and components:
+ * - Image: Component from Next.js for handling images.
+ * - Loader2: Icon component from lucide-react for loading animations.
+ * - SignUp, ClerkLoaded, ClerkLoading: Components from @clerk/nextjs for authentication.
+ * 
+ * Page Component:
+ * - Renders the sign-up page with a responsive layout.
+ * - Utilizes Clerk's authentication components to handle loading and sign-up.
+ **/
+
 import Image from "next/image";
 import { Loader2 } from "lucide-react";
 import { SignUp, ClerkLoaded, ClerkLoading } from "@clerk/nextjs";
