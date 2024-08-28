@@ -25,7 +25,7 @@ const app = new Hono()
             const { from, to, accountId} = c.req.valid("query");
 
             if (!auth?.userId) {
-                return c.json({ error: "Uauthorized" });
+                return c.json({ error: "Uauthorized" }, 401);
             }
                 const defaultTo = new Date();
                 const defaultFrom =subDays(defaultTo, 30);
@@ -76,8 +76,8 @@ const app = new Hono()
                 );
                 const [lastPeriod] = await fetchFinancialData(
                     auth.userId,
-                    startDate,
-                    endDate,
+                    lastPeriodStart,
+                    lastPeriodEnd,
                 );
 
                 const incomeChange = calculatePercentageChange(

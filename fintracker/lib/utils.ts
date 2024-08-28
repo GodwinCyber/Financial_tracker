@@ -1,7 +1,7 @@
 // import shadcn, a customable open source tool that
 // is used for collection  re-usable component that can
 // copy and past
-import { eachDayOfInterval, isSameDay } from "date-fns";
+import { eachDayOfInterval, format, isSameDay, subDays } from "date-fns";
 
 import { type ClassValue, clsx } from "clsx"
 import { twMerge } from "tailwind-merge"
@@ -72,4 +72,23 @@ export function fillMissingDays(
     }
   });
   return transactionsByDay;
+};
+
+type Period = {
+  from: string | Date | undefined;
+  to: string | Date | undefined;
+};
+
+export function formatDateRange (period?: Period) {
+  const defaultTo = new Date();
+  const defaultFrom = subDays(defaultTo, 30);
+
+  if (!period?.from) {
+    return `${format(defaultFrom, "LLL dd")} - ${format(defaultTo, "LLL dd, y")}`;
+  }
+
+  if (period.to) {
+    return `${format(period.from, "LLL dd")} - ${format(period.to, "LLL dd, y")}`;
+  }
+  return format(period.from, "LLL dd, y");
 };
