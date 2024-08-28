@@ -1,4 +1,5 @@
 import { format } from "date-fns";
+import { CustomTooltip } from "@/components/custom-tooltip";
 
 import {
     Tooltip,
@@ -40,6 +41,7 @@ export const AreaVariant = ({ data}: Props) => {
                   style={{ fontSize: "12px" }}
                   tickMargin={16}
                 />
+                <Tooltip content={<CustomTooltip />} />
                 <Area 
                   type="monotone"
                   dataKey="income"
