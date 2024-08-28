@@ -17,7 +17,7 @@ export const DataGrid = () => {
 
     if (isLoading) {
       return (
-        <div className="grid grid-cols-1 lg:grid-col-3 gap-8 pb-2 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-2 mb-8">
           <DataCardLoading />
           <DataCardLoading />
           <DataCardLoading />
@@ -26,7 +26,7 @@ export const DataGrid = () => {
     }
 
     return (
-        <div className="grid grid-cols-1 lg:grid-col-3 gap-8 pb-2 mb-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 pb-2 mb-8">
            <DataCard
              title="Remaining"
              value={data?.remainingAmount}

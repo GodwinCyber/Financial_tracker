@@ -72,7 +72,7 @@ export const DataCard = ({
                     <CardTitle className="text-2xl line-clamp-1">
                         {title}
                     </CardTitle>
-                    <CardDescription className="line-clamp-1">
+                    <CardDescription className="line-clamp1">
                         {dateRange}
                     </CardDescription>
                 </div>
@@ -87,6 +87,7 @@ export const DataCard = ({
                         start={0}
                         end={value}
                         decimals={2}
+                        decimalPlaces={2}
                         formattingFn={formatCurrency}
                     />
                 </h1>
@@ -95,7 +96,7 @@ export const DataCard = ({
                     percentageChange > 0 && "text-emerald-500",
                     percentageChange < 0 && "text-rose-500",
                 )}>
-                    {formatPercentage(percentageChange)} from last period
+                    {formatPercentage(percentageChange, { addPrefix: true })} from last period
                 </p>
             </CardContent>
         </Card>
@@ -110,7 +111,7 @@ export const DataCardLoading = () => {
                     <Skeleton className="h-6 w-24" />
                     <Skeleton className="h-4 w-40" />
                 </div>
-                <Skeleton className="h-12 w-12" /> {/* Adjusted the Skeleton size here */}
+                <Skeleton className="siz-12" /> {/* Adjusted the Skeleton size here */}
             </CardHeader>
             <CardContent>
                 <Skeleton className="shrink-0 h-10 w-24 mb-2" />
