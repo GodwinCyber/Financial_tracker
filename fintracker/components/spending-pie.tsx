@@ -13,10 +13,10 @@ import {
     CardTitle,
 } from "@/components/ui/card";
 import {  FileSearch, PieChart, Radar, Target } from "lucide-react";
-import { BarVariant } from "@/components/bar-variant";
-import { LineVariant } from "@/components/line-variant";
 import { useState } from "react";
 import { PieVariant } from "@/components/pie-variant";
+import { RadarVariant } from "./radar.variant";
+import { RadialVariant } from "./radial-varaint";
 
 type Props = {
     data?: {
@@ -84,8 +84,8 @@ export const SpendingPie = ({ data = [] }: Props) => {
                 ): (
                     <>
                         {chartType === "pie" && <PieVariant data={data}/>}
-                        {chartType === "radar" && <BarVariant data={data}/>}
-                        {chartType === "radial" && <LineVariant data={data}/>}
+                        {chartType === "radar" && <RadarVariant data={data}/>}
+                        {chartType === "radial" && <RadialVariant data={data}/>}
                     </>
                 )}
             </CardContent>
