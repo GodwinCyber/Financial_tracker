@@ -1,3 +1,14 @@
+/**
+ * Select Component:
+ * - Renders a `CreateableSelect` component from `react-select` for selecting or creating options.
+ * - Accepts `onChange` and `onCreate` callbacks for handling selection and creation of options.
+ * - Receives an array of options, current value, disabled state, and placeholder text as props.
+ * - Uses `useMemo` to format the current value based on provided options.
+ * - Applies custom styles to the control element of the select component.
+ * - Handles the `onSelect` event to update the selected value and trigger the `onChange` callback.
+ * - Allows users to create new options if `onCreate` is provided.
+ */
+
 "use client";
 
 import { useMemo } from "react";

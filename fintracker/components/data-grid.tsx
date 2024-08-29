@@ -1,3 +1,15 @@
+/**
+ * DataGrid Component:
+ * - Fetches summary data using `useGetSummary` hook.
+ * - Retrieves date range from URL parameters and formats it using `formatDateRange`.
+ * - Displays loading skeletons if data is still being fetched.
+ * - Displays three `DataCard` components with:
+ *   - Remaining amount with `FaPiggyBank` icon.
+ *   - Income amount with `FaArrowTrendUp` icon.
+ *   - Expenses amount with `FaArrowTrendDown` icon.
+ * - Passes formatted date range and data values to `DataCard` components.
+ **/
+
 "use client";
 
 import { useGetSummary } from "@/features/summary/api/use-get-summary";

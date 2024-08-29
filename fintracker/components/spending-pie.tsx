@@ -1,3 +1,13 @@
+/**
+ * SpendingPie Component:
+ * - Displays a `Card` component with a header and content area.
+ * - Allows users to select the type of chart to display (Pie, Radar, or Radial) using a `Select` component.
+ * - Updates the displayed chart type based on user selection.
+ * - Shows a placeholder message with an icon if no data is available.
+ * - Renders the appropriate chart variant (`PieVariant`, `RadarVariant`, or `RadialVariant`) based on the selected chart type.
+ * - Defaults to displaying a pie chart if no other chart type is selected.
+ */
+
 import  {
     Select,
     SelectValue,

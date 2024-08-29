@@ -1,3 +1,12 @@
+/**
+ * BarVariant Component:
+ * - Displays a bar chart showing income and expenses over time using `recharts`.
+ * - Includes `CartesianGrid` for grid lines and `XAxis` for date-based ticks formatted with `date-fns`.
+ * - Features `Tooltip` with a custom component (`CustomTooltip`) for detailed data display.
+ * - Bars are color-coded for income (`#3b82f6`) and expenses (`#f43f5e`), with drop shadows for visual enhancement.
+ * - The chart is responsive, adjusting to container width with a fixed height of 350 pixels.
+ **/
+
 import { CustomTooltip } from "@/components/custom-tooltip";
 import { format } from "date-fns";
 import {

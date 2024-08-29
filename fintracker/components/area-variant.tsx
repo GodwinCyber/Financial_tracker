@@ -1,3 +1,12 @@
+/**
+ * AreaVariant Component:
+ * - Renders an area chart with data for income and expenses over time using `recharts`.
+ * - Utilizes `CartesianGrid` for grid lines and `XAxis` for date-based ticks formatted with `date-fns`.
+ * - Displays gradients for income and expenses areas, with separate definitions for color and opacity.
+ * - Integrates a custom tooltip component (`CustomTooltip`) for enhanced data display.
+ * - The chart is responsive and adjusts to container width with a height of 350 pixels.
+ **/
+
 import { format } from "date-fns";
 import { CustomTooltip } from "@/components/custom-tooltip";
 

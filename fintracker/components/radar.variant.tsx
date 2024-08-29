@@ -1,3 +1,12 @@
+/**
+ * RadarVariant Component:
+ * - This component renders a RadarChart using the Recharts library, displaying data in a radial format.
+ * - It includes key chart components like PolarGrid, PolarAngleAxis, PolarRadiusAxis, and Radar.
+ * - The chart is designed to be responsive, adjusting its size to fit different screen widths with a fixed height of 350px.
+ * - The Radar component is styled with a stroke and fill color, offering visual clarity with a semi-transparent fill.
+ * - The chart's labels are adjusted for better readability with a font size of 12px.
+ **/
+
 import {
     PolarAngleAxis,
     PolarGrid,

@@ -1,3 +1,12 @@
+/**
+ * CustomTooltip Component:
+ * - Displays a custom tooltip for chart data points.
+ * - Shows formatted date, income, and expenses in a styled tooltip.
+ * - Utilizes `format` from `date-fns` for date formatting and `formatCurrency` for currency formatting.
+ * - Includes styled elements for income and expenses with color indicators.
+ * - Uses `Separator` for visual separation within the tooltip.
+ **/
+
 import { formatCurrency } from "@/lib/utils";
 import { format } from "date-fns";
 import { Separator } from "@/components/ui/separator";
@@ -42,3 +51,4 @@ export const CustomTooltip = ({ active, payload }: any) => {
         </div>
     )
 };
+

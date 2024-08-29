@@ -1,3 +1,14 @@
+/**
+ * DataCharts Component:
+ * - This component is responsible for fetching summary data and displaying it in various chart formats.
+ * - It utilizes the `useGetSummary` hook to retrieve data and manage loading states.
+ * - If data is still loading, a loading message is displayed.
+ * - Once data is available, it renders a grid layout with two main components:
+ *   - `Chart`: Displays a chart of data over days, spanning the larger portion of the grid.
+ *   - `SpendingPie`: Visualizes spending categories in a pie chart, occupying the remaining grid space.
+ * - The layout is responsive, adjusting column spans for different screen sizes.
+ **/
+
 "use client";
 
 import { useGetSummary } from "@/features/summary/api/use-get-summary";

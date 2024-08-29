@@ -1,3 +1,17 @@
+/**
+ * DataTable Component:
+ * - Displays a table with filtering, sorting, and pagination functionalities.
+ * - Allows bulk deletion of selected rows with a confirmation dialog.
+ * - Utilizes `@tanstack/react-table` for table management and state handling.
+ * 
+ * Props:
+ * - `columns`: Defines the columns and their configuration.
+ * - `data`: The data to display in the table.
+ * - `filterKey`: Key for filtering data.
+ * - `onDelete`: Function to handle bulk deletion of rows.
+ * - `disabled`: Whether the delete button should be disabled.
+ **/
+
 "use client"
 
 import { Button } from "@/components/ui/button";

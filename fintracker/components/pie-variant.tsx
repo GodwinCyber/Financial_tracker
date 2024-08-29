@@ -1,3 +1,13 @@
+/**
+ * PieVariant Component:
+ * - This component displays a PieChart using the Recharts library, showcasing data in a circular format.
+ * - It includes key chart components like Pie, Legend, Tooltip, and Cell.
+ * - Each slice of the pie is colored dynamically using a predefined list of colors.
+ * - The Legend is customized to show category names and their corresponding percentages, formatted for readability.
+ * - The Tooltip component provides additional information when hovering over the chart.
+ * - The chart is responsive, ensuring it adapts well to different screen sizes, with a fixed height of 350px.
+ **/
+
 import {
     Cell,
     Legend,

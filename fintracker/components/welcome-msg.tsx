@@ -1,3 +1,12 @@
+/**
+ * WelcomeMsg Component:
+ * - Utilizes `useUser` hook from Clerk to fetch user data.
+ * - Displays a personalized welcome message with the user's first name once data is loaded.
+ * - Shows a default message "Welcome Back" while user data is still being fetched.
+ * - Includes a brief description below the welcome message.
+ * - Adjusts text size based on screen size for responsiveness.
+ */
+
 "use client";
 
 import { useUser } from "@clerk/nextjs";

@@ -1,3 +1,12 @@
+/**
+ * AmountInput Component:
+ * - Provides an input field for entering monetary amounts, with automatic currency formatting using `CurrencyInput`.
+ * - Includes functionality to toggle the value between income (positive) and expense (negative) by clicking a button.
+ * - The button's appearance changes based on whether the amount is classified as income or expense, utilizing icons (`PlusCircle`, `MinusCircle`, `Info`) from `lucide-react`.
+ * - Tooltips offer user guidance on the input's functionality.
+ * - The component handles changes in value and displays a contextual message indicating whether the amount is income or expense.
+ **/
+
 import CurrencyInput from "react-currency-input-field";
 import { Info, MinusCircle, PlusCircle } from "lucide-react";
 

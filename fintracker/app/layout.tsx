@@ -1,3 +1,13 @@
+/**
+ * RootLayout Component:
+ * - This component sets up the foundational layout for the application.
+ * - It includes global providers such as ClerkProvider for authentication, QueryProvider for data fetching,
+ *   and SheetProvider for handling sheets or modals.
+ * - The Toaster component is used for notifications.
+ * - The Inter font is applied globally, and the layout supports multilingual content with a default language of English.
+ * - Metadata is provided for SEO purposes, setting the title and description of the application.
+ **/
+
 import type { Metadata } from "next";
 import { ClerkProvider } from "@clerk/nextjs";
 import { Inter } from "next/font/google";

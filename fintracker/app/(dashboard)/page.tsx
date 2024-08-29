@@ -1,8 +1,14 @@
 
+/**
+ * DashboardPage Component:
+ * - This component serves as the main dashboard page.
+ * - It imports and displays two main components: DataGrid and DataCharts.
+ * - The layout is centered on the screen with a maximum width of 2xl, includes padding at the bottom, 
+ *   and pulls the content upwards using negative margin for alignment.
+ **/
+
 import { DataCharts } from "@/components/data-charts";
 import { DataGrid } from "@/components/data-grid";
-import { Button } from "@/components/ui/button";
-import { useNewAccount } from "@/features/accounts/hooks/use-new-account";
 
 export default function DashboardPage() {
 

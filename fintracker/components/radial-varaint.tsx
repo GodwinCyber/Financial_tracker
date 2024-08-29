@@ -1,3 +1,13 @@
+/**
+ * RadialVariant Component:
+ * - This component renders a RadialBarChart using the Recharts library to visually represent data.
+ * - It includes key chart components such as RadialBar, Legend, and Tooltip.
+ * - The chart dynamically applies colors from a predefined list to the data bars.
+ * - The Legend is customized to display category names and their corresponding values, formatted as currency.
+ * - The Tooltip component shows additional details when hovering over chart elements.
+ * - The chart is fully responsive, adapting to various screen sizes, with a fixed height of 350px.
+ **/
+
 import {
     RadialBar,
     Legend,

@@ -1,3 +1,15 @@
+/**
+ * DataCard Component:
+ * - Displays a card with an icon, title, value, date range, and percentage change.
+ * - Uses `cva` for variant styling of the box and icon based on the variant type.
+ * - Shows formatted value and percentage change with conditional styling.
+ * - Utilizes `CountUp` for animated value display and formatting functions for currency and percentage.
+ *
+ * DataCardLoading Component:
+ * - Displays a loading skeleton card with placeholders for header and content.
+ * - Uses `Skeleton` components to show placeholders for text and icon.
+ **/
+
 import { IconType } from "react-icons";
 import { VariantProps, cva } from "class-variance-authority";
 import { cn, formatCurrency, formatPercentage } from "@/lib/utils";

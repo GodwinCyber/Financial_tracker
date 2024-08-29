@@ -1,3 +1,12 @@
+/**
+ * CategoryTooltip Component:
+ * - Displays a tooltip for category data within charts, providing detailed information about a specific category.
+ * - The tooltip appears when the user hovers over a category segment in the chart.
+ * - It includes the category name and formatted expense value, presented in a styled box with a separator.
+ * - If the tooltip is inactive (not hovered), it returns null and does not render.
+ * - Utilizes utility functions and UI components like `formatCurrency` for value formatting and `Separator` for layout division.
+ **/
+
 import { formatCurrency } from "@/lib/utils";
 import { Separator } from "@/components/ui/separator";
 
@@ -29,3 +38,4 @@ export const CategoryTooltip = ({ active, payload }: any) => {
         </div>
     )
 };
+

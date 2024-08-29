@@ -1,3 +1,12 @@
+/**
+ * Chart Component:
+ * - Provides a selectable chart interface to display transaction data.
+ * - Uses `Select` component to choose between Area, Line, and Bar charts, with icons from `lucide-react`.
+ * - Displays selected chart type (`AreaVariant`, `LineVariant`, or `BarVariant`) based on user selection.
+ * - Shows a placeholder message with a `FileSearch` icon if no data is available.
+ * - Utilizes `Card`, `CardHeader`, and `CardContent` components for structured layout and styling.
+ **/
+
 import  {
     Select,
     SelectValue,
