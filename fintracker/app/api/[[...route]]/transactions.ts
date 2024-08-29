@@ -1,3 +1,34 @@
+/**
+ * Transactions API Endpoint:
+ * - **GET /**: Retrieves a list of transactions for the authenticated user within a specified date range and optionally filtered by account.
+ *   - Requires authentication and optional query parameters: `from` (start date), `to` (end date), and `accountId`.
+ *   - Returns a JSON object with transaction details including `id`, `date`, `category`, `categoryId`, `payee`, `amount`, `notes`, `account`, and `accountId`.
+
+ * - **GET /:id**: Retrieves a specific transaction by ID for the authenticated user.
+ *   - Requires authentication and a route parameter `id`.
+ *   - Returns a JSON object with transaction details or an error if the transaction is not found.
+
+ * - **POST /**: Creates a new transaction.
+ *   - Requires authentication and a JSON body that follows the `insertTransactionSchema` (excluding `id`).
+ *   - Returns a JSON object with the created transaction.
+
+ * - **POST /bulk-create**: Creates multiple transactions at once.
+ *   - Requires authentication and a JSON body containing an array of transaction objects (excluding `id`).
+ *   - Returns a JSON object with the created transactions.
+
+ * - **POST /bulk-delete**: Deletes multiple transactions by IDs.
+ *   - Requires authentication and a JSON body containing an array of transaction IDs.
+ *   - Returns a JSON object with the deleted transactions.
+
+ * - **PATCH /:id**: Updates a specific transaction by ID.
+ *   - Requires authentication, a route parameter `id`, and a JSON body that follows the `insertTransactionSchema` (excluding `id`).
+ *   - Returns a JSON object with the updated transaction or an error if the transaction is not found.
+
+ * - **DELETE /:id**: Deletes a specific transaction by ID.
+ *   - Requires authentication and a route parameter `id`.
+ *   - Returns a JSON object with the deleted transaction or an error if the transaction is not found.
+ */
+
 import { db } from "@/db/drizzle";
 import {
   transactions,

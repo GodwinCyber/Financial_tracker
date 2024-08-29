@@ -1,3 +1,26 @@
+/**
+ * Accounts API Endpoints:
+ * - **GET /**: Fetches all accounts for the authenticated user.
+ *   - Requires authentication.
+ *   - Returns a list of accounts with their IDs and names.
+ * - **GET /:id**: Fetches a single account by its ID.
+ *   - Requires authentication and valid account ID in parameters.
+ *   - Returns the account details or a 404 error if not found.
+ * - **POST /**: Creates a new account.
+ *   - Requires authentication and valid account details in the request body.
+ *   - Returns the created account details.
+ * - **POST /bulk-delete**: Deletes multiple accounts based on an array of IDs.
+ *   - Requires authentication and valid account IDs in the request body.
+ *   - Returns the deleted account IDs or an error if unauthorized.
+ * - **PATCH /:id**: Updates an existing account by its ID.
+ *   - Requires authentication, valid account ID in parameters, and updated account details in the request body.
+ *   - Returns the updated account details or a 404 error if not found.
+ * - **DELETE /:id**: Deletes an account by its ID.
+ *   - Requires authentication and valid account ID in parameters.
+ *   - Returns the deleted account details or a 404 error if not found.
+ */
+
+
 import { db } from "@/db/drizzle";
 import { accounts, insertAccountSchema } from "@/db/schema";
 import { Hono } from "hono";

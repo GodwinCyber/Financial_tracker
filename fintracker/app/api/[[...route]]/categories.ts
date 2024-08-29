@@ -1,3 +1,25 @@
+/**
+ * Categories API Endpoints:
+ * - **GET /**: Retrieves all categories for the authenticated user.
+ *   - Requires authentication.
+ *   - Returns a list of categories with their IDs and names.
+ * - **GET /:id**: Retrieves a single category by its ID.
+ *   - Requires authentication and valid category ID in parameters.
+ *   - Returns the category details or a 404 error if not found.
+ * - **POST /**: Creates a new category.
+ *   - Requires authentication and valid category details in the request body.
+ *   - Returns the created category details.
+ * - **POST /bulk-delete**: Deletes multiple categories based on an array of IDs.
+ *   - Requires authentication and valid category IDs in the request body.
+ *   - Returns the deleted category IDs or an error if unauthorized.
+ * - **PATCH /:id**: Updates an existing category by its ID.
+ *   - Requires authentication, valid category ID in parameters, and updated category details in the request body.
+ *   - Returns the updated category details or a 404 error if not found.
+ * - **DELETE /:id**: Deletes a category by its ID.
+ *   - Requires authentication and valid category ID in parameters.
+ *   - Returns the deleted category details or a 404 error if not found.
+ */
+
 import { db } from "@/db/drizzle";
 import { categories, insertCategorySchema } from "@/db/schema";
 import { Hono } from "hono";

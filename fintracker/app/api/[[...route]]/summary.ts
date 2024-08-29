@@ -1,3 +1,18 @@
+/**
+ * Financial Summary API Endpoint:
+ * - **GET /**: Retrieves financial summary data for the authenticated user within a specified date range and optionally filtered by account.
+ *   - Requires authentication and optional query parameters: `from` (start date), `to` (end date), and `accountId`.
+ *   - Returns a JSON object with:
+ *     - `remainingAmount`: Total remaining amount for the current period.
+ *     - `remainingChange`: Percentage change in remaining amount compared to the previous period.
+ *     - `incomeAmount`: Total income for the current period.
+ *     - `incomeChange`: Percentage change in income compared to the previous period.
+ *     - `expensesAmount`: Total expenses for the current period.
+ *     - `expensesChange`: Percentage change in expenses compared to the previous period.
+ *     - `categories`: An array of top spending categories and a combined "Other" category.
+ *     - `days`: A list of daily financial data including income and expenses, with missing days filled in.
+ */
+
 import { clerkMiddleware, getAuth } from "@hono/clerk-auth";
 import { zValidator } from "@hono/zod-validator";
 import { Hono } from "hono";
